@@ -1,0 +1,30 @@
+views:
+  - title: ''
+    background: var(--simple-background)
+    path: fingerprint2
+    icon: mdi:fingerprint
+    badges: []
+    cards:
+      - type: markdown
+        content: |
+          ## Fingerprints
+      - type: markdown
+        content: >
+          **Recorded Fingerprits** ---
+
+          *id:* __{{states('input_number.fingerprint_learning_id') | round}}__
+          __{{state_attr('saver.saver',
+          'variables')[states('input_number.fingerprint_learning_id') | round |
+          string ] }}__
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: sensor.fingerprint_id
+          - entity: sensor.fingerprint_person
+          - entity: sensor.fingerprint_mode
+          - type: divider
+          - entity: input_number.fingerprint_learning_id
+          - entity: input_text.id_name
+          - entity: script.fingerprint_learning_mode
+          - entity: script.fingerprint_delete_print
+          - entity: script.fingerprint_rename
